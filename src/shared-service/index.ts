@@ -1,0 +1,1 @@
+export { SharedServiceModule as AppModule } from './shared-service.module';
