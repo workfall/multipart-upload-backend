@@ -18,8 +18,8 @@ if (!RUN_TIME) {
 
 const APPMODULE =
   RUN_TIME === 'dev'
-    ? require(`./microservices/${MICROSERVICE_NAME}`).AppModule
-    : require(`../dist/microservices/${MICROSERVICE_NAME}`).AppModule;
+    ? require(`./services/${MICROSERVICE_NAME}`).AppModule
+    : require(`../dist/services/${MICROSERVICE_NAME}`).AppModule;
 
 async function bootstrap() {
   const app = await NestFactory.create(APPMODULE, {cors: true});
