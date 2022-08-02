@@ -68,4 +68,25 @@ export class SharedServiceService {
 
         return await this.s3.completeMultipartUpload(params).promise();
     }
+
+    async getPreSignedUrl(body) {
+        const params = {
+            Bucket: this.AWS_S3_BUCKET,
+            Key: String(body.name),
+            Expires: 60,
+            ContentType: body.contentType,
+        };
+
+        return await this.s3.getSignedUrlPromise('putObject', params);
+    }
+
+    async abortMultiPart(body) {
+        const params = {
+            Bucket: this.AWS_S3_BUCKET,
+            Key: String(body.name),
+            UploadId: body.uploadId,
+        };
+
+        return await this.s3.abortMultipartUpload(params).promise();
+    }
 }

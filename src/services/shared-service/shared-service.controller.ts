@@ -28,4 +28,14 @@ export class SharedServiceController {
     async completeMultiPart(@Body() body: any) {
         return await this.sharedServiceService.completeMultiPart(body);
     }
+
+    @Post('get-presigned-url')
+    async getPresignedUrl(@Body() body: any) {
+        return await this.sharedServiceService.getPreSignedUrl(body);
+    }
+
+    @Post('abort-multipart')
+    async abortMultiPart(@Body() body: any) {
+        return await this.sharedServiceService.abortMultiPart(body);
+    }
 }
