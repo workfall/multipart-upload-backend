@@ -30,12 +30,10 @@ export class SharedServiceService {
     }
 
     async completeMultiPart(body) {
-        console.log('body in complete', body);
-        
         const params = {
             Bucket: this.AWS_S3_BUCKET,
             Key: String(body.name),
-            UploadId: body.uploadId,
+            UploadId: body.UploadId,
             MultipartUpload: {
                 Parts: body.parts,
             }
@@ -45,14 +43,12 @@ export class SharedServiceService {
     }
 
     async getPreSignedUrl(body) {
-        console.log('body', body);
         
         const params = {
             Bucket: this.AWS_S3_BUCKET,
             Key: String(body.name),
             Expires: 60,
             ContentType: body.contentType,
-            // UploadId: body.uploadId
         };
 
         return await this.s3.getSignedUrlPromise('putObject', params);
