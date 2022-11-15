@@ -8,12 +8,6 @@ export class SharedServiceController {
         private sharedServiceService: SharedServiceService
     ) {}
 
-    @Post('upload-file')
-    @UseInterceptors(FileInterceptor('file'))
-    async uploadFile(@UploadedFile() file: Express.Multer.File) {
-        return await this.sharedServiceService.uploadFile(file);
-    }
-
     @Post('create-multipart')
     async createMultiPart(@Body() body: any) {
         return await this.sharedServiceService.createMultipartUpload(body);
